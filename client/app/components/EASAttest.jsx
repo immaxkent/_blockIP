@@ -13,6 +13,8 @@ function EASAttest(cid, fromAddress, toAddress, hash, setAttestationId) {
     const EASContractAddress = '0x4200000000000000000000000000000000000021'; //optimism-goerli
     const submitAttestation = async () => {
 
+        const thisAddres = toAddress;
+        console.log(cid);
         console.log(cid, fromAddress, toAddress, hash);
 
             const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -23,7 +25,7 @@ function EASAttest(cid, fromAddress, toAddress, hash, setAttestationId) {
 
             const schema = new SchemaEncoder("address _to, address _from, string _CID, string _nftHash");
             const encodedData = schema.encodeData([
-            {name: '_to', value: toAddress, type: "address"},
+            {name: '_to', value: toAddress.toAddress, type: "address"},
             {name: '_from', value: fromAddress, type: "address"},
             {name: '_CID', value: cid, type: "string"},
             {name: '_nftHash', value: hash, type: "string"},

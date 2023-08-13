@@ -9,7 +9,7 @@ import BlockIPFactory from '../../utils/BlockIPFactory.json'
 // import fs from 'fs';
 import { deployedContractAddress as theContractAddress } from '@/utils/config';
 
-const Minter = ({ setHash, cid, toAddress, setToAddress, setCurrentStep, setFromAddress }) => {
+const Minter = ({ setHash, cid, setToAddress, setCurrentStep, setFromAddress }) => {
 	const [mintedNFT, setMintedNFT] = useState(null)
 	const [miningStatus, setMiningStatus] = useState(null)
 	const [loadingState, setLoadingState] = useState(0)
@@ -174,7 +174,7 @@ const Minter = ({ setHash, cid, toAddress, setToAddress, setCurrentStep, setFrom
 				<label>
 					Recipient Etheruem Address: <br/>
 				</label>
-				<input value={toAddress} onChange={e => setToAddress(e.target.value)} />
+				<input onChange={e => setToAddress(e.target.value)} />
 			</div>
 			{currentAccount === '' ? (
 				<button
