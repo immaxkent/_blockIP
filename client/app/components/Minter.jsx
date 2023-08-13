@@ -174,7 +174,7 @@ const Minter = ({ setHash, cid, setToAddress, setCurrentStep, setFromAddress }) 
 				<label>
 					Recipient Etheruem Address: <br/>
 				</label>
-				<input onChange={e => setToAddress(e.target.value)} />
+				<input value={toAddress} onChange={e => setToAddress(e.target.value)} />
 			</div>
 			{currentAccount === '' ? (
 				<button
