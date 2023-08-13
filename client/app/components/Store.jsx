@@ -1,9 +1,8 @@
 "use client";
 import { React, useState } from 'react';
 import { Web3Storage } from 'web3.storage';
-require('dotenv').config()
 
-const Store = () => {
+const Store = ({setCid, setCurrentStep}) => {
     
     const [isUploaded, setIsUploaded] = useState(false);
     const [selectedFiles, setSelectedFiles] = useState(null);
@@ -24,6 +23,8 @@ const Store = () => {
             const cid = await client.put(selectedFiles);
             console.log(cid);
             setSelectedFiles(null);
+            setCid(cid);
+            setCurrentStep("minter")
             return cid;
         } catch (err) {
             console.error(err);

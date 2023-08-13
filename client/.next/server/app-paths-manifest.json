@@ -1,3 +1,4 @@
 {
-  "/minter/page": "app/minter/page.js"
+  "/page": "app/page.js",
+  "/factory/page": "app/factory/page.js"
 }
