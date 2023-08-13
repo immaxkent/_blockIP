@@ -19,7 +19,7 @@ function EASAttest(cid, fromAddress, toAddress, hash, setAttestationId) {
             const eas = new EAS(EASContractAddress, signer);
             eas.connect(signer);
 
-            const schema = new SchemaEncoder("string _to, string _from, string _CID, string _nftHash");
+            const schema = new SchemaEncoder("address _to, address _from, string _CID, string _nftHash");
             const encodedData = schema.encodeData([
             {name: '_to', value: toAddress, type: "address"},
             {name: '_from', value: fromAddress, type: "address"},
