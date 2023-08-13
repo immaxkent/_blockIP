@@ -1,5 +1,6 @@
 import Image from "next/image";
 import EASAttest from "./components/EASAttest.jsx";
+import someData from "../../datas/someData.json";
 
 export default function Home() {
   return (
@@ -16,6 +17,11 @@ export default function Home() {
         width={60}
         alt="doc"
       />
+      <div id="data_container">
+        {someData.map((itemOfData) => {
+          <div>{json.stingify(itemOfData)}</div>;
+        })}
+      </div>
     </main>
   );
 }
