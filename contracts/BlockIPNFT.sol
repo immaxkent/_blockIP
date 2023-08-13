@@ -23,11 +23,13 @@ contract BlockIPNFT is ERC721, ERC721URIStorage, Ownable {
     function mint(
         address _to,
         string memory _tokenURI
-    ) public onlyOwner {
+    ) public onlyOwner returns (uint256) {
         _tokenIds.increment();
         uint256 newItemId = _tokenIds.current();
         _safeMint(_to, newItemId);
         _setTokenURI(newItemId, _tokenURI);
+        emit newBlockIPNFT(newItemId);
+        return newItemId;
     }
 
     function _burn(uint256 tokenId) internal virtual override(ERC721, ERC721URIStorage) {

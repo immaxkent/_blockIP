@@ -1,29 +1,43 @@
 const hre = require("hardhat");
-require(dotenv).config();
+require('dotenv').config();
+const fs = require("fs");
 
 async function main(input) {
 
-    const returnContractForThisNetwork = (input) => {
-        if (input == 1) {
-            return process.env.OP_FACTORY_ADDRESS
-        }
-        if (input == 2) {
-            return process.env.BASE_FACTORY_ADDRESS
-        }
-        if (input == 3) {
-            return process.env.ZORA_FACTORY_ADDRESS
-        }
-    }
+    /////////////////////////////////////////////////////////////////////////////////
+    //A load a gumf file to get the contract address for this network,
+    //once we start deploying to multiple networks,
+    //then pass it to the BIPNFTFactory contract constructor
 
-    const contractAddress = returnContractForThisNetwork(input)
+    const readInput = input;
+
+    // const returnContractForThisNetwork = (input) => {
+    //     if (input == 1) {
+    //         return process.env.OP_FACTORY_ADDRESS
+    //     }
+    //     if (input == 2) {
+    //         return process.env.BASE_FACTORY_ADDRESS
+    //     }
+    //     if (input == 3) {
+    //         return process.env.ZORA_FACTORY_ADDRESS
+    //     }
+    // }
+
+    const deploymentDatas = fs.readFileSync("datas/DeploymentDatas.json", "utf8");
+    const deploymentDatasJson = JSON.parse(deploymentDatas);
+    deployedAddress = deploymentDatasJson.deployedBlockIPNFTContractAddress;
+
+    // const contractAddress = returnContractForThisNetwork(input)
+
+    /////////////////////////////////////////////////////////////////////////////////
     
-    const BIPNFTFactory = await hre.ethers.getContractFactory("BIPNFTFactory");
-    const bipNFTFactory = await BIPNFTFactory.deploy(contractAddress);
+    const BlockIPFactory = await hre.ethers.getContractFactory("BlockIPFactory");
+    const bipNFTFactory = await BlockIPFactory.deploy(deployedAddress);
     
     await bipNFTFactory.waitForDeployment();
     
     console.log(
-     `BIPNFTFactory contract deployed to ${bipNFTFactory.address}`
+     `BIPNFTFactory contract deployed to ${bipNFTFactory.target}`
       );
     }
 

@@ -1,13 +1,11 @@
 import React from 'react';
+//import json file here
 
 export default function Explore() {
-    //here, we can explore the uploaded IP data. The process goes:
-
-    //1. fetch the data from Polybase
-    //2. display the data in a table
-    //3. add a search bar to search for specific data
+    //here, we can explore the uploaded IP data. 
     
     return (
+
 
         <main className="flex flex-col items-center p-12">
           <h2 className="flex items-center justify-center gap-2">

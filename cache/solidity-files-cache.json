@@ -40,8 +40,8 @@
       ]
     },
     "/Users/zuludykes/Solace/Code/BlockIP/Main/_blockIP/contracts/BlockIPNFT.sol": {
-      "lastModificationDate": 1691908648209,
-      "contentHash": "1be56e6bb6cda48ebba365be28fd2c55",
+      "lastModificationDate": 1691921071404,
+      "contentHash": "b1d28720eca158906352cb381d43eea9",
       "sourceName": "contracts/BlockIPNFT.sol",
       "solcConfig": {
         "version": "0.8.19",
@@ -698,43 +698,6 @@
         "^0.8.0"
       ],
       "artifacts": []
-    },
-    "/Users/zuludykes/Solace/Code/BlockIP/Main/_blockIP/contracts/Deployment.sol": {
-      "lastModificationDate": 1691908770854,
-      "contentHash": "fb3226bdeba1107e0d4097c3fa7d13dc",
-      "sourceName": "contracts/Deployment.sol",
-      "solcConfig": {
-        "version": "0.8.19",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "@openzeppelin/contracts/access/Ownable.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.9"
-      ],
-      "artifacts": [
-        "Deployment"
-      ]
     }
   }
 }
