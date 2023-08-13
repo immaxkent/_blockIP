@@ -13,6 +13,8 @@ function EASAttest(cid, fromAddress, toAddress, hash, setAttestationId) {
     const EASContractAddress = '0x4200000000000000000000000000000000000021'; //optimism-goerli
     const submitAttestation = async () => {
 
+        console.log(cid, fromAddress, toAddress, hash);
+
             const provider = new ethers.providers.Web3Provider(window.ethereum);
             await provider.send('eth_requestAccounts', []); // ATTEMPT 3 - successfully prompts MM to connect
             const signer = provider.getSigner();
