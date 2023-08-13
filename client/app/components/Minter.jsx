@@ -9,7 +9,7 @@ import BlockIPFactory from '../../utils/BlockIPFactory.json'
 // import fs from 'fs';
 import { deployedContractAddress as theContractAddress } from '@/utils/config';
 
-const Minter = ({ setHash, cid, toAddress, setToAddress, setCurrentStep }) => {
+const Minter = ({ setHash, cid, toAddress, setToAddress, setCurrentStep, setFromAddress }) => {
 	const [mintedNFT, setMintedNFT] = useState(null)
 	const [miningStatus, setMiningStatus] = useState(null)
 	const [loadingState, setLoadingState] = useState(0)
@@ -34,6 +34,7 @@ const Minter = ({ setHash, cid, toAddress, setToAddress, setCurrentStep }) => {
 		if (accounts.length !== 0) {
 			console.log('Account ', accounts[0])
 			setCurrentAccount(accounts[0])
+			setFromAddress(accounts[0])
 		} else {
 			console.log('No account connected!')
 		}

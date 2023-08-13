@@ -39,8 +39,8 @@ export default function Factory() {
           ""
         ) // store the PDF and return the CID, storing it in the state via setCid
       }
-      {currentStep === "minter" ? <Minter setHash={setHash} cid={cid} toAddress={toAddress} setToAddress={setToAddress} setCurrentStep={setCurrentStep}/> : ""}
-      {currentStep === "attest" ? <EASAttest /> : ""}
+      {currentStep === "minter" ? <Minter setHash={setHash} cid={cid} toAddress={toAddress} setToAddress={setToAddress} setFromAddress={setFromAddress} setCurrentStep={setCurrentStep}/> : ""}
+      {currentStep === "attest" ? <EASAttest cid={cid} fromAddress={fromAddress} toAddress={toAddress} hash={hash} setAttestationId={setAttestationId} setCurrentStep={setCurrentStep}/> : ""}
       {currentStep === "completed" ? (
         <div>
           IP Issued!! Head over to Explore to check out your uploaded IP
