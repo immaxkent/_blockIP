@@ -7,6 +7,3 @@ Here exists a set of contracts that allow functionality of our app.
 
 2. BlockIPFactory.sol
 ...wherein the owner is capable of issuing an NFT to a given user, attaching the otherwise generated CID (used as the item's URI) to the NFT's metadata. 
-
-3. Attestation.sol
-...where, once the datas are uploaded to web3.Storage and the NFT is successfully minted, the owner attests to the successful issuance of this IP to the user's wallet address.

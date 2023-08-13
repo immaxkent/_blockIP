@@ -1,15 +1,20 @@
 // SPDX-License-Identifier: MIT
 
 pragma solidity ^0.8.9;
-import { ERC721 } from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
+import './BlockIPNFT.sol';
 
-contract BlockIPFactory is ERC721, Ownable {
-    constructor() ERC721("BlockIPFactory", "BIPF") {}
+contract BlockIPFactory is Ownable {
+    BlockIPNFT public blockIPNFT;
+    mapping(string => address) public cidToOwner; // mapping of web3Cid to owner
 
-    function mint(address to, uint256 tokenId) public onlyOwner returns(address) {
-        _mint(to, tokenId);
-        
+    constructor(address _deployedContract) {
+    blockIPNFT = BlockIPNFT(address(_deployedContract));
+    }
+
+    function mintBlockIP(address _to, string memory _web3Cid) public onlyOwner {
+        blockIPNFT.mint(_to, _web3Cid);
+        cidToOwner[_web3Cid] = address(_to);
     }
 }
 

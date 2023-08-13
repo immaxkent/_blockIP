@@ -1,7 +1,7 @@
 //SPDX-License-Identifier: MIT 
 
 pragma solidity ^0.8.9;
-import { Ownable } from "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract Deployment is Ownable {
     function evaluate() public view returns(bool) {
