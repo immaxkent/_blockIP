@@ -3,10 +3,11 @@
 import { useState, useEffect } from 'react'
 // import { contractAddress } from '../../utils/config.json'
 import { ethers } from 'ethers'
-import axios from 'axios'
-import Loader from 'react-loader-spinner'
-import BlockIPFactory from '../utils/BlockIPFactory.json'
-import fs from 'fs';
+// import axios from 'axios'
+import * as Loader from 'react-loader-spinner'
+import BlockIPFactory from '../../utils/BlockIPFactory.json'
+// import fs from 'fs';
+import { deployedContractAddress as theContractAddress } from '@/utils/config';
 
 const mint = () => {
 	const [mintedNFT, setMintedNFT] = useState(null)
@@ -16,8 +17,8 @@ const mint = () => {
 	const [currentAccount, setCurrentAccount] = useState('')
 	const [correctNetwork, setCorrectNetwork] = useState(false)
 
-    const contractAddressObject = JSON.parse(fs.readFileSync('../../utilsconfig.json', 'utf8'));
-    const contractAddress = contractAddressObject[0].deployedContractAddress;
+    // const contractAddressObject = JSON.parse(fs.readFileSync('../../utilsconfig.json', 'utf8'));
+    // const contractAddress = contractAddressObject[0].deployedContractAddress;
 
 	// Checks if wallet is connected
 	const checkIfWalletIsConnected = async () => {
@@ -65,15 +66,17 @@ const mint = () => {
 		let chainId = await ethereum.request({ method: 'eth_chainId' })
 		console.log('Connected to chain:' + chainId)
 
-		const rinkebyChainId = '0x4'
+		const optimismChainId = '0x1a4'
+        const baseChainId = '0x14a33'
+        const zoraChainId = '0x1'
 
-		const devChainId = 1337
-		const localhostChainId = `0x${Number(devChainId).toString(16)}`
+		// const devChainId = 1337
+		// const localhostChainId = `0x${Number(devChainId).toString(16)}`
 
-		if (chainId !== rinkebyChainId && chainId !== localhostChainId) {
-			setCorrectNetwork(false)
-		} else {
+		if (chainId == optimismChainId || chainId == baseChainId || chainId == zoraChainId) {
 			setCorrectNetwork(true)
+		} else {
+			setCorrectNetwork(false)
 		}
 	}
 
@@ -82,7 +85,7 @@ const mint = () => {
 		checkCorrectNetwork()
 	}, [])
 
-	// Creates transaction to mint NFT on clicking Mint Character button
+	// execute mint of blockIPNFT
 	const mintBIPNFT = async () => {
 		try {
 			const { ethereum } = window
@@ -91,32 +94,29 @@ const mint = () => {
 				const provider = new ethers.providers.Web3Provider(ethereum)
 				const signer = provider.getSigner()
 				const nftContract = new ethers.Contract(
-					contractAddress,
-					NFT.abi,
-					signer
+					theContractAddress,
+					BlockIPFactory.abi,
+					signer,
+                    
 				)
 
-				let nftTx = await nftContract.createEternalNFT()
-				console.log('Mining....', nftTx.hash)
+				let nftTx = await nftContract.mintBlockIP("0x0000000000000000000000000000000000000000", "https://dweb.link/ipfs/bafybeigt7f34llkyc5p7k7jxz5q6qj3tionpukp4ozu2hrpbdggsjdk5ea", {gasLimit: 5000000})
+				console.log('Canst thou mine... ', nftTx.hash)
 				setMiningStatus(0)
 
 				let tx = await nftTx.wait()
 				setLoadingState(1)
-				console.log('Mined!', tx)
+				console.log('MINED, YOU DWARFISH PRINCE!', tx)
 				let event = tx.events[0]
 				let value = event.args[2]
 				let tokenId = value.toNumber()
 
-				console.log(
-					`Mined, see transaction: https://rinkeby.etherscan.io/tx/${nftTx.hash}`
-				)
-
-				getMintedNFT(tokenId)
+				// getMintedNFT(tokenId)
 			} else {
 				console.log("Ethereum object doesn't exist!")
 			}
 		} catch (error) {
-			console.log('Error minting character', error)
+			console.log('Minting process error: ', error)
 			setTxError(error.message)
 		}
 	}
@@ -130,17 +130,17 @@ const mint = () => {
 				const provider = new ethers.providers.Web3Provider(ethereum)
 				const signer = provider.getSigner()
 				const nftContract = new ethers.Contract(
-					contractAddress,
+					theContractAddress,
 					NFT.abi,
 					signer
 				)
 
 				let tokenUri = await nftContract.tokenURI(tokenId)
-				let data = await axios.get(tokenUri)
-				let meta = data.data
+				// let data = await axios.get(tokenUri)
+				// let meta = data.data
 
 				setMiningStatus(1)
-				setMintedNFT(meta.image)
+				// setMintedNFT(meta.image)
 			} else {
 				console.log("Ethereum object doesn't exist!")
 			}
@@ -164,41 +164,32 @@ const mint = () => {
 				</svg>
 			</div>
 			<h2 className='text-3xl font-bold mb-20 mt-12'>
-				Mint your Eternal Domain NFT!
+			 Issue BlockIP
 			</h2>
 			{currentAccount === '' ? (
 				<button
-					className='text-2xl font-bold py-3 px-12 bg-black shadow-lg shadow-[#6FFFE9] rounded-lg mb-10 hover:scale-105 transition duration-500 ease-in-out'
+					className='text-2xl font-bold py-3 px-12 bg-black shadow-lg shadow-[#ffffff] rounded-lg mb-10 hover:scale-105 transition duration-500 ease-in-out'
 					onClick={connectWallet}
 				>
 					Connect Wallet
 				</button>
 			) : correctNetwork ? (
 				<button
-					className='text-2xl font-bold py-3 px-12 bg-black shadow-lg shadow-[#6FFFE9] rounded-lg mb-10 hover:scale-105 transition duration-500 ease-in-out'
+					className='text-2xl font-bold py-3 px-12 bg-black shadow-lg shadow-[#ffffff] rounded-lg mb-10 hover:scale-105 transition duration-500 ease-in-out'
 					onClick={mintBIPNFT}
 				>
-					Mint Character
+					Mint NFT
 				</button>
 			) : (
 				<div className='flex flex-col justify-center items-center mb-20 font-bold text-2xl gap-y-3'>
-					<div>----------------------------------------</div>
-					<div>Please connect to the Rinkeby Testnet</div>
-					<div>and reload the page</div>
-					<div>----------------------------------------</div>
+					<div>.........................................................</div>
+					<div className='flex flex-col justify-content:center align-items:center'>Please connect to the Optimism, Base or Zora Testnets and reload the page</div>
+					<div></div>
+					<div>.........................................................</div>
 				</div>
 			)}
 
-			<div className='text-xl font-semibold mb-20 mt-4'>
-				<a
-					href={`https://rinkeby.rarible.com/collection/${contractAddress}`}
-					target='_blank'
-				>
-					<span className='hover:underline hover:underline-offset-8 '>
-						View Collection on Rarible
-					</span>
-				</a>
-			</div>
+			
 			{loadingState === 0 ? (
 				miningStatus === 0 ? (
 					txError === null ? (
@@ -206,7 +197,7 @@ const mint = () => {
 							<div className='text-lg font-bold'>
 								Processing your transaction
 							</div>
-							<Loader
+							<Loader.TailSpin
 								className='flex justify-center items-center pt-12'
 								type='TailSpin'
 								color='#d3d3d3'
@@ -223,7 +214,7 @@ const mint = () => {
 			) : (
 				<div className='flex flex-col justify-center items-center'>
 					<div className='font-semibold text-lg text-center mb-4'>
-						Your Eternal Domain Character
+						Your BlockIP NFT has been minted!
 					</div>
 					<img
 						src={mintedNFT}

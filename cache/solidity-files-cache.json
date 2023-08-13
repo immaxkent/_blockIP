@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/Users/zuludykes/Solace/Code/BlockIP/Main/_blockIP/contracts/BlockIPFactory.sol": {
-      "lastModificationDate": 1691908728557,
-      "contentHash": "62b1b0a1de7dac153e7a63a8e6f18c19",
+      "lastModificationDate": 1691933905746,
+      "contentHash": "fef940f681ea49f9334c4da731107f5d",
       "sourceName": "contracts/BlockIPFactory.sol",
       "solcConfig": {
         "version": "0.8.19",
@@ -29,7 +29,6 @@
         }
       },
       "imports": [
-        "@openzeppelin/contracts/access/Ownable.sol",
         "./BlockIPNFT.sol"
       ],
       "versionPragmas": [
@@ -40,8 +39,8 @@
       ]
     },
     "/Users/zuludykes/Solace/Code/BlockIP/Main/_blockIP/contracts/BlockIPNFT.sol": {
-      "lastModificationDate": 1691921071404,
-      "contentHash": "b1d28720eca158906352cb381d43eea9",
+      "lastModificationDate": 1691933923467,
+      "contentHash": "620d46633222a105f1f8f18b8c781957",
       "sourceName": "contracts/BlockIPNFT.sol",
       "solcConfig": {
         "version": "0.8.19",
@@ -69,8 +68,7 @@
       "imports": [
         "@openzeppelin/contracts/token/ERC721/ERC721.sol",
         "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol",
-        "@openzeppelin/contracts/utils/Counters.sol",
-        "@openzeppelin/contracts/access/Ownable.sol"
+        "@openzeppelin/contracts/utils/Counters.sol"
       ],
       "versionPragmas": [
         "^0.8.0"

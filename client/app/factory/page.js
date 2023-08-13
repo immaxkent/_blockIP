@@ -12,9 +12,11 @@ export default function Factory() {
     return (
       
       <main className="flex flex-col items-center p-12">
+        <div className="flex flex-row items-center p12">
           <h2 className="flex items-center justify-center gap-2">
             <span className="mt-2 font-bold">IP Admission Factory</span>
           </h2>
+        </div>
           <Store />
           
         </main>

@@ -10,14 +10,17 @@ module.exports = {
       gasLimit: 30000000000,
       saveDeployments: true,
   },
-  //   base_goerli: {
-  //     url: "https://goerli.base.org",
-  //     accounts: [process.env.BASE_PRIVATE_KEY],
-  //     gasPrice: 1000000000,
-  // },
-  //   zora_testnet: {
-  //     url: "'https://testnet.rpc.zora.energy/'",
-  //     accounts: [process.env.ZORA_PRIVATE_KEY],
-  // }
+    base_goerli: {
+      url: "https://goerli.base.org",
+      accounts: [process.env.BASE_PRIVATE_KEY],
+      gasLimit: 30000000000,
+      saveDeployments: true,
+  },
+    zora_testnet: {
+      url: "'https://testnet.rpc.zora.energy/'",
+      accounts: [process.env.ZORA_PRIVATE_KEY],
+      gasLimit: 30000000000,
+      saveDeployments: true,
+  }
 }
 }

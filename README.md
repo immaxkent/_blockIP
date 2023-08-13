@@ -19,7 +19,10 @@ Let's get up and running...
 ## How To
 
 ```bash
-# first, we install the dependancies
+# first, we install the dependancies in the root directory.
+npm install
+# then, we install the dependancies is the client folder
+cd client
 npm install
 
 # then, we need API keys and private keys to store in a .env file. 
