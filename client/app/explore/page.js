@@ -16,7 +16,7 @@ export default function Explore() {
 
           <div id="data_container">
         {someData.map((itemOfData) => {
-          <div>{json.stingify(itemOfData)}</div>;
+          <div>{JSON.stringify(itemOfData)}</div>;
         })}
       </div>
           

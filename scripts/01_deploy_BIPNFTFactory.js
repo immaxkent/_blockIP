@@ -5,7 +5,7 @@ const fs = require("fs");
 async function main(input) {
 
     /////////////////////////////////////////////////////////////////////////////////
-    //A load a gumf file to get the contract address for this network,
+    //A gumph file to get the contract address for this network,
     //once we start deploying to multiple networks,
     //then pass it to the BIPNFTFactory contract constructor
 

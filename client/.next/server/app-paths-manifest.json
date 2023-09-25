@@ -1,4 +1,6 @@
 {
   "/page": "app/page.js",
+  "/explore/page": "app/explore/page.js",
+  "/minter/page": "app/minter/page.js",
   "/factory/page": "app/factory/page.js"
 }

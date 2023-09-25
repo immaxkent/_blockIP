@@ -9,7 +9,7 @@ import BlockIPFactory from '../../utils/BlockIPFactory.json'
 // import fs from 'fs';
 import { deployedContractAddress as theContractAddress } from '@/utils/config';
 
-const Minter = ({ setHash, cid, setToAddress, setCurrentStep, setFromAddress }) => {
+const Minter = ({ setHash, toAddress, cid, setToAddress, setCurrentStep, setFromAddress }) => {
 	const [mintedNFT, setMintedNFT] = useState(null)
 	const [miningStatus, setMiningStatus] = useState(null)
 	const [loadingState, setLoadingState] = useState(0)
